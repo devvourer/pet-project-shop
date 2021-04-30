@@ -1,20 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-</head>
-<body>
-  <div id="header">
-    <a href="/" class="logo">My Shop</a>
-  </div>
-  <div id="subheader">
-    <div class="cart">Your cart is empty.</div>
-  </div>
-  <div id="content">
-    {% block content %}{% endblock %}
-  </div>
-</body>
-</html>
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2>
+            <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+        </h2>
+        <p class="price">${{ product.price }}</p>
+        {{ product.description|linebreaks }}
+    </div>
+{% endblock %}
