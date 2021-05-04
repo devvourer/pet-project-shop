@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'shop',
-    'cart'
+    'cart',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings for CART
 CART_SESSION_ID = 'cart'
+
+
+THUMBNAIL_DEBUG = True

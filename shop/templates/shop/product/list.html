@@ -21,15 +21,27 @@
 </div>
 <div id="main" class="product-list">
     <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-    {% for product in products %}
-        <div class="item">
-            <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}">
-            </a>
-            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            <br>
-            ${{ product.price }}
-        </div>
-    {% endfor %}
+    {% include "shop/product/list_ajax.html" %}
 </div>
 {% endblock %}
+
+
+{% block domready %}{% if category %}
+    var page = 1;
+    var empty_page = false;
+    var block_request = false;
+
+    $(window).scroll(function() {
+        var margin = $(document).height() - $(window).height()-200;
+        if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+            block_request = true;
+            page += 1;
+            $.get('?page=' + page, function(data) {
+                if(data == '') {empty_page = true;}
+                else { block_request = false;
+                        $('#main').append(data);
+                }
+            });
+        }
+    });
+{% endif %}{% endblock %}
