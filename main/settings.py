@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     # my apps
     'shop',
     'cart',
-    'sorl.thumbnail'
+    'sorl.thumbnail',
+    'orders'
 ]
 
 MIDDLEWARE = [
