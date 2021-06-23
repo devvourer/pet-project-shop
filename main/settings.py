@@ -132,3 +132,10 @@ CART_SESSION_ID = 'cart'
 
 
 THUMBNAIL_DEBUG = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'toktobekov7595@gmail.com'
+EMAIL_HOST_PASSWORD = '460622123beka'
