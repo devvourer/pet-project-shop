@@ -4,6 +4,9 @@
 {% block title %}Your shopping cart{% endblock %}
 
 {% block content %}
+{% if error %}
+    <h1>{{ error }}</h1>
+{% else %}
     <h1>Ваша корзина</h1>
     <table class="cart">
         <thead>
@@ -49,4 +52,5 @@
         <a href="{% url 'shop:product_list' %}" class="button light">Continue shopping</a>
         <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
     </p>
+{% endif %}
 {% endblock %}
