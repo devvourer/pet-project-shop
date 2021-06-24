@@ -26,6 +26,9 @@ def cart_remove(request, product_id):
 def cart_detail(request):
     try:
         cart = Cart(request)
+        print(len(cart))
+        for item in cart:
+            print(item)
         for item in cart:
             item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'],
                                                                            'update': True})
