@@ -14,7 +14,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'd04bfbd3c195.ngrok.io',
+]
 
 
 # Application definition
@@ -30,7 +32,9 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'sorl.thumbnail',
-    'orders'
+    'orders',
+    'payment',
+    'qiwi_payment'
 ]
 
 MIDDLEWARE = [
@@ -130,6 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings for CART
 CART_SESSION_ID = 'cart'
 
+QIWI_API_KEY = config('QIWI_API_KEY')
 
 THUMBNAIL_DEBUG = True
 
@@ -139,3 +144,18 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'toktobekov7595@gmail.com'
 EMAIL_HOST_PASSWORD = '460622123beka'
+
+
+# braintree settings
+BRAINTREE_MERCHANT_ID = 'y3skd2vd8z8kg5n9'
+BRAINTREE_PUBLIC_KEY = 't3k5ksygq3wh3xhz'
+BRAINTREE_PRIVATE_KEY = 'a00d3d653389e5525fba6ee350f38842'
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)

@@ -23,6 +23,11 @@
                 Your cart is empty
             {% endif %}
         {% endwith %}
+        {% if user.is_authenticated %}
+        {{ user.username }}
+        {% else %}
+        <a>kaakaka</a>
+        {% endif %}
     </div>
   </div>
   <div id="content">
