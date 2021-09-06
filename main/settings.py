@@ -15,7 +15,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'd04bfbd3c195.ngrok.io',
 ]
 
 
@@ -134,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings for CART
 CART_SESSION_ID = 'cart'
 
-QIWI_API_KEY = config('QIWI_API_KEY')
+# QIWI_API_KEY = config('QIWI_API_KEY')
 
 THUMBNAIL_DEBUG = True
 
@@ -143,7 +142,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'toktobekov7595@gmail.com'
-EMAIL_HOST_PASSWORD = '460622123beka'
+EMAIL_HOST_PASSWORD = '460622123Dead'
 
 
 # braintree settings

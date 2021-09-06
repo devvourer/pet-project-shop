@@ -31,7 +31,7 @@ def payment_process(request):
     billid = str(order.billid)
     r = requests.put(url+billid, headers={'content-type': 'application/json',
                                    'accept': 'application/json',
-                                   'Authorization': 'Bearer'+settings.QIWI_API_KEY
+                                   'Authorization': 'Bearer'
                                    }, json=data_raw)
     redirect_to_form = r.json()
     return redirect(redirect_to_form['payUrl'])
@@ -47,5 +47,4 @@ class PaymentView(View):
 
     def post(self, request, *args, **kwargs):
         return HttpResponse('sucess', status=200)
-
 

@@ -6,8 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
-    path('payment/', include('qiwi_payment.urls', namespace='payment')),
-    # path('payment/', include('payment.urls', namespace='payment')),
+    # path('payment/', include('qiwi_payment.urls', namespace='payment')),
+    path('payment/', include('payment.urls', namespace='payment')),
     path('', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
 
