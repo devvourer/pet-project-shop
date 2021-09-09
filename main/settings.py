@@ -141,14 +141,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'toktobekov7595@gmail.com'
-EMAIL_HOST_PASSWORD = '460622123Dead'
+EMAIL_HOST_USER = config('EMAIL_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
 
 # braintree settings
-BRAINTREE_MERCHANT_ID = 'y3skd2vd8z8kg5n9'
-BRAINTREE_PUBLIC_KEY = 't3k5ksygq3wh3xhz'
-BRAINTREE_PRIVATE_KEY = 'a00d3d653389e5525fba6ee350f38842'
+BRAINTREE_MERCHANT_ID = config('BRAINTREE_MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = config('BRAINTREE_PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = config('BRAINTREE_PRIVATE_KEY')
 
 from braintree import Configuration, Environment
 
