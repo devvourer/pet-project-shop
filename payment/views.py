@@ -2,8 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
-import braintree
 from orders.models import Order
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.conf import settings
+from io import BytesIO
+
+import weasyprint
+import braintree
 
 
 def payment_process(request):
@@ -23,6 +29,19 @@ def payment_process(request):
             order.paid = True
             order.braintree_id = result.transaction.id
             order.save()
+
+            subject = f'Shop - Invoice no. {order.id}'
+            message = 'Please, find attached the invoice for your recent purchase'
+            email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [order.email])
+
+            html = render_to_string('orders/order/pdf.html', {'order': order})
+            out = BytesIO()
+            stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')]
+            weasyprint.HTML(string=html).write_pdf(out, stylesheets=stylesheets)
+
+            email.attach(f'order_{order.id}.pdf', out.getvalue(), 'application/pdf')
+            email.send()
+
             return redirect('payment:done')
         else:
             return redirect('payment:canceled')
